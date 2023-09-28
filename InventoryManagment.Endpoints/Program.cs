@@ -1,3 +1,4 @@
+using InventoryManagement.Persistance;
 namespace InventoryManagment.Endpoints
 {
     public class Program
@@ -5,8 +6,7 @@ namespace InventoryManagment.Endpoints
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.Services.AddAuthorization();
-
+            builder.Services.ConfigurePersistanceService(builder.Configuration);
             var app = builder.Build();
             app.UseHttpsRedirection();
             app.UseAuthorization();

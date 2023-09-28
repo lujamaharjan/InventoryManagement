@@ -6,4 +6,14 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="FastEndpoints" Version="5.17.1.1" />
+    <PackageReference Include="FastEndpoints.Swagger" Version="5.17.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\InventoryManagement.Application\InventoryManagement.Application.csproj" />
+    <ProjectReference Include="..\InventoryManagement.Persistance\InventoryManagement.Persistance.csproj" />
+  </ItemGroup>
+
 </Project>
