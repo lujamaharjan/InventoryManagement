@@ -17,5 +17,24 @@ namespace InventoryManagement.Persistance.Repositories
             _context = context;
         }
 
+        public async Task DecreaseItemQuantity(Guid itemId, int quantity)
+        {
+            var item = await Get(itemId);
+            if(item.Quantity < quantity)
+            {
+                throw new Exception("Invalid Quantity");
+            }
+            item.Quantity -= quantity;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task IncreaseItemQuantity(Guid itemId, int quantity)
+        {
+            var item = await Get(itemId);
+            item.Quantity += quantity;
+            await _context.SaveChangesAsync();
+        }
+
+
     }
 }
