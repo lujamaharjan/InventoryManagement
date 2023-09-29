@@ -7,48 +7,47 @@ using System.Text;
 using System.Threading.Tasks;
 using Dapper;
 using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 
 namespace InventoryManagement.Persistance.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private readonly string _connectionString = string.Empty;
-        public GenericRepository(IConfiguration configuration)
+
+        private readonly InventoryManagementDbContext _context;
+        public GenericRepository(InventoryManagementDbContext _dbContext)
         {
-            _connectionString = configuration.GetConnectionString("InventoryManagementConnectionString");
+            _context = _dbContext;
+        }
+        public async Task<T> Add(T entity)
+        {
+            await _context.AddAsync(entity);
+            await _context.SaveChangesAsync();
+            return entity;
+        }
+        public async Task Delete(T entity)
+        {
+            _context.Set<T>().Remove(entity);
+            await _context.SaveChangesAsync();
+        }
+        public async Task<bool> Exists(Guid id)
+        {
+            var entity = await Get(id);
+            return entity != null; ;
+        }
+        public async Task<T> Get(Guid id)
+        {
+            return await _context.Set<T>().FindAsync(id);
+        }
+        public async Task<IReadOnlyList<T>> GetAll()
+        {
+            return await _context.Set<T>().ToListAsync();
+        }
+        public async Task Update(T entity)
+        {
+            _context.Entry(entity).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
         }
 
-        public async Task<T> IGenericRepository<T>.Add(T entity)
-        {
-            using(var db = new SqlConnection(_connectionString))
-            {
-
-            }
-        }
-
-        public async Task<T> IGenericRepository<T>.Delete(T entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<bool> IGenericRepository<T>.Exists(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<T> IGenericRepository<T>.Get(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<IReadOnlyList<T>> IGenericRepository<T>.GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<T> IGenericRepository<T>.Update(T entity)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

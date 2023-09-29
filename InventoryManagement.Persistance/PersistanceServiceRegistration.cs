@@ -10,7 +10,7 @@ namespace InventoryManagement.Persistance
         public static IServiceCollection ConfigurePersistanceService(this IServiceCollection services, IConfiguration configuration)
         {
             
-            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped(typeof(ICategoryItemRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IItemRepository, ItemRepository>();
             return services;
         }

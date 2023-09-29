@@ -8,14 +8,12 @@ using System.Threading.Tasks;
 
 namespace InventoryManagement.Persistance.Repositories
 {
-    public class ItemRepository : GenericRepository<Item>, IItemRepository
+    public class CategoryItemRepository: GenericRepository<CategoryItem>, ICategoryItemRepository
     {
-
         private readonly InventoryManagementDbContext _context;
-        public ItemRepository(InventoryManagementDbContext context):base(context) 
+        public CategoryItemRepository(InventoryManagementDbContext context) : base(context) 
         {
             _context = context;
         }
-
     }
 }
