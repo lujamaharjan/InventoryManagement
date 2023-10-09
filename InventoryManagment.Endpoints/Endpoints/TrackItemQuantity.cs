@@ -20,7 +20,7 @@ namespace InventoryManagment.Endpoints.Endpoints
 
         public override async Task HandleAsync(CancellationToken ct)
         {
-            string itemId = Route<string>("itemId");
+            string itemId = Route<string>("itemId")??"";
             var quantity = await _trackItemQuantityFeature.GetItemQuantity(new Guid(itemId));
             await SendAsync(new()
             {
