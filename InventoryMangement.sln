@@ -20,11 +20,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManagement.Domain"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManagement.Application", "InventoryManagement.Application\InventoryManagement.Application.csproj", "{8A9E77CE-0DD8-4F6A-83F1-C4072919CC0C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManagement.Infrastructure", "InventoryManagement.Inventory\InventoryManagement.Infrastructure.csproj", "{D6CF390A-D0D7-4459-9977-366B362162AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManagement.Infrastructure", "InventoryManagement.Infrastructure\InventoryManagement.Infrastructure.csproj", "{D6CF390A-D0D7-4459-9977-366B362162AE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManagement.Persistance", "InventoryManagement.Persistance\InventoryManagement.Persistance.csproj", "{09424E61-783F-42FF-8BCD-950EC121D763}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManagement.Endpoints", "InventoryManagment.Endpoints\InventoryManagement.Endpoints.csproj", "{68F233FA-31B9-4E1A-9CC9-60235834B9D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManagement.Endpoints", "InventoryManagement.Endpoints\InventoryManagement.Endpoints.csproj", "{68F233FA-31B9-4E1A-9CC9-60235834B9D6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManagement.UnitTest", "InventoryManagement.UnitTest\InventoryManagement.UnitTest.csproj", "{A54D5324-E525-4B58-B3AB-63B9A55D1458}"
 EndProject

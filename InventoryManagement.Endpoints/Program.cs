@@ -2,6 +2,7 @@ global using FastEndpoints;
 global using FastEndpoints.Swagger;
 using InventoryManagement.Application;
 using InventoryManagement.Persistance;
+using InventoryManagement.Infrastructure;
 namespace InventoryManagment.Endpoints
 {
     public class Program
@@ -22,6 +23,7 @@ namespace InventoryManagment.Endpoints
 
             builder.Services.ConfigureApplicationService(builder.Configuration);
             builder.Services.ConfigurePersistanceService(builder.Configuration);
+            builder.Services.ConfigureInfrastructureService(builder.Configuration);
 
             var app = builder.Build();
             app.UseHttpsRedirection();
