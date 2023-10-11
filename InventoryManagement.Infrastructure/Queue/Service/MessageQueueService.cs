@@ -1,6 +1,10 @@
 ﻿using RabbitMQ.Client;
 using InventoryManagement.Infrastructure.Queue.Contracts;
 using System.Text;
+using InventoryManagement.Infrastructure.Dtos.MailDto;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace InventoryManagement.Infrastructure.Queue.Service;
 
@@ -11,14 +15,15 @@ public class MessageQueueService : IMessageQueueService
     {
         _factory = new ConnectionFactory { HostName = hostName};
     }
-    public void SendMessage(string message)
+    public void SendMessage(MailDto dto)
     {
         using(var connection = _factory.CreateConnection())
         using(var channel = connection.CreateModel())
         {
-            channel.QueueDeclare(queue: "smsQueue", durable: false, exclusive: false, autoDelete: false, arguments: null);
-            var body = Encoding.UTF8.GetBytes(message);
-            channel.BasicPublish(exchange: "", routingKey: "smsQueue", basicProperties: null, body: body);
+            string body = JsonSerializer.Serialize<MailDto>(dto);
+            var bodyAsBytes = Encoding.UTF8.GetBytes(body);
+            channel.QueueDeclare(queue: "EmailQueue", durable: false, exclusive: false, autoDelete: false, arguments: null);
+            channel.BasicPublish(exchange: "", routingKey: "EmailQueue", basicProperties: null, body: bodyAsBytes);
         }
     }
 }
