@@ -24,7 +24,7 @@ public class ItemRepositoryTest
         await repository.DecreaseItemQuantity(itemId, decreaseQuantity);
 
         // Assert
-        item.Quantity.Should().Be(10);
+        item.Quantity.Should().Be(5);
       
     }
 }
