@@ -32,24 +32,24 @@ namespace InventoryManagment.Endpoints.Endpoints
                 ChangedQuantity = dto.ChangedQuantity
             };
 
-            // if (dto.InOut)
-            //     await _updateQuantityFeature.AddItemQuantity(updateDto);
-            // else 
-            //     await _updateQuantityFeature.SubtractItemQuantity(updateDto);
+            if (dto.InOut)
+                await _updateQuantityFeature.AddItemQuantity(updateDto);
+            else 
+                await _updateQuantityFeature.SubtractItemQuantity(updateDto);
 
             _messageQueueService.SendMessage(new MailDto 
             {
                 Addresses = new List<string>{
                     "lujamaharjan7@gmail.com"
                 },
-                Subject = "",
-                MailBody=""
+                Subject = "Device Low Alert",
+                MailBody="Hello Device Quantity is Lower than threshold. Look at it"
             });
-            await SendAsync(new()
+            await SendAsync(response:new BaseResponse()
             {
                 Status = true,
                 Message = "Item Quantity Updated Succesfully"
-            });
+            }, statusCode: 200, cancellation:ct);
             
         }
     }
